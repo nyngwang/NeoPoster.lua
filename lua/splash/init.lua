@@ -25,11 +25,12 @@ function M.splash(fp)
   local img_height = #lines
   local img_width = vim.fn.strdisplaywidth(lines[1])
 
-  -- editor info.
-  local editor = vim.api.nvim_list_uis()[1]
+  -- loadee info.
+  local win_width = vim.api.nvim_win_get_width(0)
+  local win_height = vim.api.nvim_win_get_height(0)
   local buf_splash = U.get_splash_buf()
-  local left_padding = string.rep(' ', (editor.width - img_width)/2, '')
-  local count_top_padding = (editor.height - img_height)/2
+  local left_padding = string.rep(' ', (win_width - img_width)/2, '')
+  local count_top_padding = (win_height - img_height)/2
 
   for i = img_height, 1, -1 do
     vim.api.nvim_buf_set_lines(buf_splash, 0, 0, true, { left_padding .. lines[i] })
@@ -39,6 +40,7 @@ function M.splash(fp)
     vim.api.nvim_buf_set_lines(buf_splash, 0, 0, true, { '' })
   end
 
+  vim.api.nvim_buf_set_option(buf_splash, 'modifiable', false)
   vim.api.nvim_set_current_buf(buf_splash)
 end
 
