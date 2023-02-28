@@ -9,7 +9,7 @@ vim.api.nvim_create_augroup('Splash.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
 function M.setup(opts)
   if not type(opts) then opts = {} end
-  M.default_path = opts.default_path or nil
+  M.default_path = opts.default_path or ''
 
   A.create_autocmds()
 end
