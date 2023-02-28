@@ -1,4 +1,4 @@
-local U = require('splash.utils')
+local U = require('neo-splash.utils')
 local M = {}
 vim.api.nvim_create_augroup('Splash.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ function M.setup(opts)
 end
 
 
-function M.splash(fp)
+function M.neo_splash(fp)
   if vim.fn.argc() > 0
     or vim.bo.filetype == 'gitcommit'
   then return end
@@ -43,6 +43,12 @@ function M.splash(fp)
   vim.api.nvim_buf_set_option(buf_splash, 'modifiable', false)
   vim.api.nvim_set_current_buf(buf_splash)
 end
+
+
+local function setup_vim_commands()
+  vim.api.nvim_create_user_command('NeoSplash', M.neo_splash, {})
+end
+setup_vim_commands()
 
 
 return M
