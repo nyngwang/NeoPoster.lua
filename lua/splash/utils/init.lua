@@ -26,6 +26,14 @@ function M.get_splash_buf()
       vim.fn.winrestview(view_in)
     end
   })
+  vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+    group = 'Splash.lua',
+    buffer = buf_scratch,
+    callback = function ()
+      vim.api.nvim_set_current_buf(buf_in)
+      vim.fn.winrestview(view_in)
+    end
+  })
   return buf_scratch
 end
 
