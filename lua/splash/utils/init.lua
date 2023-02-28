@@ -11,4 +11,11 @@ function M.readlines(filepath)
 end
 
 
+function M.get_splash_buf()
+  local buf_scratch = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_option(buf_scratch, 'bufhidden', 'wipe')
+  return buf_scratch
+end
+
+
 return M
