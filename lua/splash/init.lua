@@ -8,12 +8,13 @@ local M = {}
 ---------------------------------------------------------------------------------------------------
 function M.setup(opts)
   if not type(opts) then opts = {} end
+  M.default_path = opts.default_path or nil
 
 end
 
 
 function M.splash(fp)
-  if fp == nil then return end
+  if fp == nil then fp = M.default_path end
 
   local lines = U.readlines(fp)
     if #lines == 0 then return end
