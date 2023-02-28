@@ -1,6 +1,6 @@
 local U = require('splash.utils')
 local M = {}
-
+vim.api.nvim_create_augroup('Splash.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
 
 -- local yes, _, code = os.rename(target_path, target_path)
@@ -37,7 +37,6 @@ function M.splash(fp)
   end
 
   vim.api.nvim_set_current_buf(buf_splash)
-  -- TODO: add an one-shot keymap to close this scratch buffer?
 end
 
 

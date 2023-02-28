@@ -12,8 +12,20 @@ end
 
 
 function M.get_splash_buf()
+  local buf_in = vim.api.nvim_get_current_buf()
+  local view_in = vim.fn.winsaveview()
   local buf_scratch = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_option(buf_scratch, 'bufhidden', 'wipe')
+
+  vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+    group = 'Splash.lua',
+    buffer = buf_scratch,
+    callback = function ()
+      vim.fn.getchar()
+      vim.api.nvim_set_current_buf(buf_in)
+      vim.fn.winrestview(view_in)
+    end
+  })
   return buf_scratch
 end
 
