@@ -14,6 +14,9 @@ end
 
 
 function M.splash(fp)
+  if vim.fn.argc() > 0
+    or vim.bo.filetype == 'gitcommit'
+  then return end
   if fp == nil then fp = M.default_path end
 
   local lines = U.readlines(fp)
