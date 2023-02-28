@@ -1,4 +1,5 @@
 local U = require('neo-splash.utils')
+local A = require('neo-splash.utils.autocmds')
 local M = {}
 vim.api.nvim_create_augroup('Splash.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
@@ -10,14 +11,16 @@ function M.setup(opts)
   if not type(opts) then opts = {} end
   M.default_path = opts.default_path or nil
 
+  A.create_autocmds()
 end
 
 
-function M.neo_splash(fp)
+function M.neo_splash(opts)
   if vim.fn.argc() > 0
     or vim.bo.filetype == 'gitcommit'
   then return end
-  if fp == nil then fp = M.default_path end
+
+  local fp = #opts.args > 0 and opts.args or M.default_path
 
   local lines = U.readlines(fp)
     if #lines == 0 then return end
@@ -46,7 +49,7 @@ end
 
 
 local function setup_vim_commands()
-  vim.api.nvim_create_user_command('NeoSplash', M.neo_splash, {})
+  vim.api.nvim_create_user_command('NeoSplash', M.neo_splash, { nargs = '?' })
 end
 setup_vim_commands()
 
