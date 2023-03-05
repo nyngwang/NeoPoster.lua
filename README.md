@@ -12,7 +12,7 @@ So ... wheel reinvented!
 
 ## Preview
 
-https://user-images.githubusercontent.com/24765272/221884625-01a3cecb-8e50-4498-ae8b-e302aab702b9.mov
+<img src="https://user-images.githubusercontent.com/24765272/222985745-07eb6b07-e9cc-421b-b294-3080428f9ecb.png" width="600">
 
 
 ## Setup
