@@ -44,6 +44,7 @@ function M.neo_splash(opts)
   end
 
   vim.api.nvim_buf_set_option(buf_splash, 'modifiable', false)
+  vim.api.nvim_buf_set_option(buf_splash, 'filetype', 'neo-splash')
   vim.api.nvim_set_current_buf(buf_splash)
 end
 
