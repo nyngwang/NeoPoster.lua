@@ -28,8 +28,8 @@ use {
   'nyngwang/NeoSplash.lua',
   config = function ()
     require('neo-splash').setup {
-      -- change it to point to your own file.
-      default_path = '~/.config/nvim/lua/ningwang/data/ascii_art/miku.txt'
+      call_on_VimEnter = true, -- let me create it for you on VimEnter, since it's kinda tricky.
+      default_path = '~/.config/nvim/lua/ningwang/data/ascii_art/miku.txt', -- change it to point to your own file.
     }
     -- show the splash on VimEnter but later.
     vim.api.nvim_create_autocmd({ 'UIEnter' }, {
