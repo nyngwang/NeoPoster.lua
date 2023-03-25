@@ -18,7 +18,7 @@ function M.get_splash_buf()
   vim.api.nvim_buf_set_option(buf_scratch, 'bufhidden', 'wipe')
 
   vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-    group = 'Splash.lua',
+    group = 'NeoSplash.lua',
     buffer = buf_scratch,
     callback = function ()
       vim.fn.getcharstr()

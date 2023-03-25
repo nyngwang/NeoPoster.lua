@@ -1,7 +1,7 @@
 local U = require('neo-splash.utils')
 local A = require('neo-splash.utils.autocmds')
 local M = {}
-vim.api.nvim_create_augroup('Splash.lua', { clear = true })
+vim.api.nvim_create_augroup('NeoSplash.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
 
 -- local yes, _, code = os.rename(target_path, target_path)
@@ -10,6 +10,8 @@ vim.api.nvim_create_augroup('Splash.lua', { clear = true })
 function M.setup(opts)
   if not type(opts) then opts = {} end
   M.default_path = opts.default_path or ''
+  M.call_on_VimEnter = opts.call_on_VimEnter
+    if not M.call_on_VimEnter then M.call_on_VimEnter = false end
 
   A.create_autocmds()
 end
