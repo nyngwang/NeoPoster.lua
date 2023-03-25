@@ -13,6 +13,7 @@ end
 
 function M.get_splash_buf()
   local buf_in = vim.api.nvim_get_current_buf()
+  local buf_data = { ft=vim.bo.filetype, bt=vim.bo.buftype }
   local view_in = vim.fn.winsaveview()
   local buf_scratch = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_option(buf_scratch, 'bufhidden', 'wipe')
@@ -24,6 +25,8 @@ function M.get_splash_buf()
       vim.fn.getcharstr()
 
       vim.api.nvim_set_current_buf(buf_in)
+      vim.api.nvim_buf_set_option(buf_in, 'filetype', buf_data.ft)
+      vim.api.nvim_buf_set_option(buf_in, 'buftype', buf_data.bt)
       vim.fn.winrestview(view_in)
       vim.cmd('redraw')
     end
