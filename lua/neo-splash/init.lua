@@ -18,10 +18,6 @@ end
 
 
 function M.neo_splash(opts)
-  if vim.fn.argc() > 0
-    or vim.bo.filetype == 'gitcommit'
-  then return end
-
   local fp = #opts.args > 0 and opts.args or M.default_path
 
   local lines = U.readlines(fp)
