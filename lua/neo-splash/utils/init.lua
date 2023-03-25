@@ -23,7 +23,7 @@ function M.get_splash_buf()
     buffer = buf_scratch,
     callback = function ()
       vim.cmd('redraw')
-      while vim.fn.getcharstr(true) ~= '' do end
+      repeat until vim.fn.getcharstr(true) ~= ''
 
       vim.api.nvim_set_current_buf(buf_in)
       vim.api.nvim_buf_set_option(buf_in, 'filetype', buf_data.ft)
