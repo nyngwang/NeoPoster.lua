@@ -22,7 +22,8 @@ function M.get_splash_buf()
     group = 'NeoSplash.lua',
     buffer = buf_scratch,
     callback = function ()
-      vim.fn.getcharstr()
+      vim.cmd('redraw')
+      while vim.fn.getcharstr(true) ~= '' do end
 
       vim.api.nvim_set_current_buf(buf_in)
       vim.api.nvim_buf_set_option(buf_in, 'filetype', buf_data.ft)
