@@ -1,6 +1,6 @@
 <img src="https://neovim.io/logos/neovim-mark-flat.png" align="right" width="100" />
 
-NeoSplash.lua
+NeoPoster.lua
 ===
 
 Always want to create one to show some ascii arts.
@@ -18,23 +18,23 @@ So ... wheel reinvented!
 ## Setup
 
 notes:
-- `default_path`: will be used when calling `NeoSplash [{filepath}]`.
+- `default_path`: will be used when calling `NeoPoster [{filepath}]`.
   - don't need to add quotes for `filepath` and `~` is allowed.
   - don't know how to support `<Tab>`-completion of `filepath`.😅 (PR welcome)
 
 
 ```lua
 use {
-  'nyngwang/NeoSplash.lua',
+  'nyngwang/NeoPoster.lua',
   config = function ()
-    require('neo-splash').setup {
+    require('neo-poster').setup {
       call_on_VimEnter = true, -- let me create it for you on VimEnter, since it's kinda tricky.
       default_path = '~/.config/nvim/lua/ningwang/data/ascii_art/miku.txt', -- change it to point to your own file.
     }
-    -- show the splash on VimEnter but later.
+    -- show the poster on VimEnter but later.
     vim.api.nvim_create_autocmd({ 'UIEnter' }, {
       callback = function ()
-        if vim.bo.buftype == '' then vim.cmd('NeoSplash') end
+        if vim.bo.buftype == '' then vim.cmd('NeoPoster') end
       end,
     })
   end

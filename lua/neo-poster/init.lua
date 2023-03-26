@@ -1,7 +1,7 @@
-local U = require('neo-splash.utils')
-local A = require('neo-splash.utils.autocmds')
+local U = require('neo-poster.utils')
+local A = require('neo-poster.utils.autocmds')
 local M = {}
-vim.api.nvim_create_augroup('NeoSplash.lua', { clear = true })
+vim.api.nvim_create_augroup('NeoPoster.lua', { clear = true })
 ---------------------------------------------------------------------------------------------------
 
 -- local yes, _, code = os.rename(target_path, target_path)
@@ -17,7 +17,7 @@ function M.setup(opts)
 end
 
 
-function M.neo_splash(opts)
+function M.neo_poster(opts)
   local fp = #opts.args > 0 and opts.args or M.default_path
 
   local lines = U.readlines(fp)
@@ -29,26 +29,26 @@ function M.neo_splash(opts)
   -- loadee info.
   local win_width = vim.api.nvim_win_get_width(0)
   local win_height = vim.api.nvim_win_get_height(0)
-  local buf_splash = U.get_splash_buf()
+  local buf_poster = U.get_poster_buf()
   local left_padding = string.rep(' ', (win_width - img_width)/2, '')
   local count_top_padding = (win_height - img_height)/2
 
   for i = img_height, 1, -1 do
-    vim.api.nvim_buf_set_lines(buf_splash, 0, 0, true, { left_padding .. lines[i] })
+    vim.api.nvim_buf_set_lines(buf_poster, 0, 0, true, { left_padding .. lines[i] })
   end
   -- add top padding.
   for _ = 1, count_top_padding do
-    vim.api.nvim_buf_set_lines(buf_splash, 0, 0, true, { '' })
+    vim.api.nvim_buf_set_lines(buf_poster, 0, 0, true, { '' })
   end
 
-  vim.api.nvim_buf_set_option(buf_splash, 'modifiable', false)
-  vim.api.nvim_buf_set_option(buf_splash, 'filetype', 'neo-splash')
-  vim.api.nvim_set_current_buf(buf_splash)
+  vim.api.nvim_buf_set_option(buf_poster, 'modifiable', false)
+  vim.api.nvim_buf_set_option(buf_poster, 'filetype', 'neo-poster')
+  vim.api.nvim_set_current_buf(buf_poster)
 end
 
 
 local function setup_vim_commands()
-  vim.api.nvim_create_user_command('NeoSplash', M.neo_splash, { nargs = '?' })
+  vim.api.nvim_create_user_command('NeoPoster', M.neo_poster, { nargs = '?' })
 end
 setup_vim_commands()
 

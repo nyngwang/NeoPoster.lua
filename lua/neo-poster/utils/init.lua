@@ -11,7 +11,7 @@ function M.readlines(filepath)
 end
 
 
-function M.get_splash_buf()
+function M.get_poster_buf()
   local buf_in = vim.api.nvim_get_current_buf()
   local buf_data = { ft=vim.bo.filetype, bt=vim.bo.buftype }
   local view_in = vim.fn.winsaveview()
@@ -19,7 +19,7 @@ function M.get_splash_buf()
   vim.api.nvim_buf_set_option(buf_scratch, 'bufhidden', 'wipe')
 
   vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-    group = 'NeoSplash.lua',
+    group = 'NeoPoster.lua',
     buffer = buf_scratch,
     callback = function ()
       vim.cmd('redraw')
