@@ -31,12 +31,6 @@ use {
       call_on_VimEnter = true, -- let me create it for you on VimEnter, since it's kinda tricky.
       default_path = '~/.config/nvim/lua/ningwang/data/ascii_art/miku.txt', -- change it to point to your own file.
     }
-    -- show the poster on VimEnter but later.
-    vim.api.nvim_create_autocmd({ 'UIEnter' }, {
-      callback = function ()
-        if vim.bo.buftype == '' then vim.cmd('NeoPoster') end
-      end,
-    })
   end
 }
 ```
