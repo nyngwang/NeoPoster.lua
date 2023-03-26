@@ -43,7 +43,10 @@ function M.neo_poster(opts)
 
   vim.api.nvim_buf_set_option(buf_poster, 'modifiable', false)
   vim.api.nvim_buf_set_option(buf_poster, 'filetype', 'neo-poster')
-  vim.api.nvim_set_current_buf(buf_poster)
+  vim.defer_fn(function ()
+    vim.api.nvim_set_current_buf(buf_poster)
+    vim.cmd('redraw')
+  end, 50)
 end
 
 
