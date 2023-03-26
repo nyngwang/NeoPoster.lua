@@ -27,8 +27,9 @@ function M.neo_poster(opts)
   local img_width = vim.fn.strdisplaywidth(lines[1])
 
   -- loadee info.
-  local win_width = vim.api.nvim_win_get_width(0)
-  local win_height = vim.api.nvim_win_get_height(0)
+  local win_enter = vim.api.nvim_get_current_win()
+  local win_width = vim.api.nvim_win_get_width(win_enter)
+  local win_height = vim.api.nvim_win_get_height(win_enter)
   local buf_poster = U.get_poster_buf()
   local left_padding = string.rep(' ', (win_width - img_width)/2, '')
   local count_top_padding = (win_height - img_height)/2
@@ -44,7 +45,7 @@ function M.neo_poster(opts)
   vim.api.nvim_buf_set_option(buf_poster, 'modifiable', false)
   vim.api.nvim_buf_set_option(buf_poster, 'filetype', 'neo-poster')
   vim.defer_fn(function ()
-    vim.api.nvim_set_current_buf(buf_poster)
+    vim.api.nvim_win_set_buf(win_enter, buf_poster)
     vim.cmd('redraw')
   end, 50)
 end
